@@ -21,4 +21,8 @@ public interface CustomerDAO {
     String findCustomerNameById(int custId);
 
     int findTotalCustomer();
+
+    void insertBatch(List<Customer> customers);
+
+    void insertBatchSQL(String sql);
 }

@@ -3,6 +3,7 @@ package com.sujiawei.java.daoimpl;
 import com.sujiawei.java.bean.Customer;
 import com.sujiawei.java.dao.CustomerDAO;
 import com.sujiawei.java.model.CustomerRowMapper;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -130,7 +131,7 @@ public class CustomerImplDAO extends JdbcDaoSupport implements CustomerDAO {
 
         String sql = "SELECT NAME FROM CUSTOMER WHERE CUST_ID = ?";
 
-        String name = (String)getJdbcTemplate().queryForObject(sql, new Object[] { custId }, String.class);
+        String name = getJdbcTemplate().queryForObject(sql, new Object[] { custId }, String.class);
 
         return name;
 
@@ -146,5 +147,29 @@ public class CustomerImplDAO extends JdbcDaoSupport implements CustomerDAO {
         return total;
     }
 
+    @Override
+    public void insertBatch(List<Customer> customers) {
+        String sql = "insert  into customer (cust_id, name, age) values (?, ?, ?)";
+
+        getJdbcTemplate().batchUpdate(sql, new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement preparedStatement, int i) throws SQLException {
+                Customer customer = customers.get(i);
+                preparedStatement.setInt(1, customer.getCustId());
+                preparedStatement.setString(2, customer.getName());
+                preparedStatement.setInt(3, customer.getAge());
+            }
+
+            @Override
+            public int getBatchSize() {
+                return customers.size();
+            }
+        });
+    }
+
+    @Override
+    public void insertBatchSQL(String sql) {
+        getJdbcTemplate().batchUpdate(sql);
+    }
 
 }
