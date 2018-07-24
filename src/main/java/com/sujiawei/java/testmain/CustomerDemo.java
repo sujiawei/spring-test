@@ -18,28 +18,6 @@ public class CustomerDemo
         CustomerDAO customerDAO = (CustomerDAO) context.getBean("customerDAO");
         //Customer customer = new Customer(4, "sujiawei",28);
         //customerDAO.insertWithTemplate(customer);
-    	
-        Customer customer1 = customerDAO.findByCustomerId(4);
-        System.out.println(customer1.toString());
-
-        Customer customer2 = customerDAO.findByCustomerIdWithTemplate(4);
-        System.out.println(customer2.toString());
-
-        List<Customer> customerList = customerDAO.findAll();
-        System.out.println(customerList);
-
-        List<Customer> customerList1 = customerDAO.findAllWithRowMapper();
-        System.out.println(customerList1);
-
-        String name = customerDAO.findCustomerNameById(4);
-        System.out.println(name);
-
-        int total = customerDAO.findTotalCustomer();
-        System.out.println(total);
-
-
-        String sql = "UPDATE CUSTOMER SET NAME ='BATCHUPDATE'";
-        customerDAO.insertBatchSQL(sql);
 
         Customer customer3 = new Customer(5, "sujiawe5",21);
         Customer customer4 = new Customer(6, "sujiawe6",22);
@@ -50,6 +28,28 @@ public class CustomerDemo
         customers.add(customer4);
         customers.add(customer5);
 
-        customerDAO.insertBatch(customers);
+        //customerDAO.insertBatch(customers);
+
+        Customer customer1 = customerDAO.findByCustomerId(5);
+        System.out.println(customer1.toString());
+
+        Customer customer2 = customerDAO.findByCustomerIdWithTemplate(5);
+        System.out.println(customer2.toString());
+
+        List<Customer> customerList = customerDAO.findAll();
+        System.out.println(customerList);
+
+        List<Customer> customerList1 = customerDAO.findAllWithRowMapper();
+        System.out.println(customerList1);
+
+        String name = customerDAO.findCustomerNameById(5);
+        System.out.println(name);
+
+        int total = customerDAO.findTotalCustomer();
+        System.out.println(total);
+
+
+        String sql = "UPDATE CUSTOMER SET NAME ='BATCHUPDATE'";
+        customerDAO.insertBatchSQL(sql);
     }
 }

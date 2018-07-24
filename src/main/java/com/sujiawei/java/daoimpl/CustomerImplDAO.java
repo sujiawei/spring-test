@@ -122,7 +122,7 @@ public class CustomerImplDAO extends JdbcDaoSupport implements CustomerDAO {
 
         String sql = "SELECT * FROM CUSTOMER";
 
-        List<Customer> customers = getJdbcTemplate().query(sql, new BeanPropertyRowMapper<>(Customer.class));
+        List<Customer> customers = getJdbcTemplate().query(sql, new BeanPropertyRowMapper(Customer.class));
         return customers;
     }
 
@@ -148,8 +148,19 @@ public class CustomerImplDAO extends JdbcDaoSupport implements CustomerDAO {
     }
 
     @Override
-    public void insertBatch(List<Customer> customers) {
+    public void insertBatch(final List<Customer> customers) {
         String sql = "insert  into customer (cust_id, name, age) values (?, ?, ?)";
+
+        /**
+        List<Object[]> parameters = new ArrayList<Object[]>();
+
+        for (Customer cust : customers) {
+            parameters.add(new Object[] {cust.getCustId(),
+                    cust.getName(), cust.getAge()}
+            );
+        }
+        getJdbcTemplate().batchUpdate(sql, parameters);
+         **/
 
         getJdbcTemplate().batchUpdate(sql, new BatchPreparedStatementSetter() {
             @Override
