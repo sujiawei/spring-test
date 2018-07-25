@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+    <bean id="CustomerBean" class="com.sujiawei.java.bean.Customer">
+        <property name="person">
+            <bean class="com.sujiawei.java.bean.Person">
+                <property name="name" value="sjw"/>
+                <property name="age" value="12"/>
+                <property name="address" value="adbs"/>
+            </bean>
+        </property>
+        <property name="lists">
+            <list>
+                <value>1</value>
+                <ref bean="PersonBean"/>
+                <bean class="com.sujiawei.java.bean.Person">
+                    <property name="name" value="sjwList"/>
+                    <property name="address" value="sdfasd"/>
+                    <property name="age" value="32"/>
+                </bean>
+            </list>
+        </property>
+
+        <property name="sets">
+            <set>
+                <value>1</value>
+                <ref bean="PersonBean"/>
+                <bean class="com.sujiawei.java.bean.Person">
+                    <property name="name" value="sjwSet"/>
+                    <property name="address" value="sdfasd"/>
+                    <property name="age" value="32"/>
+                </bean>
+            </set>
+        </property>
+
+        <property name="maps">
+            <map>
+                <entry key="Key 1" value="1" />
+                <entry key="Key 2" value-ref="PersonBean"/>
+                <entry key="Key 3">
+                    <bean class="com.sujiawei.java.bean.Person">
+                        <property name="name" value="sjwMap"/>
+                        <property name="address" value="sdfasd"/>
+                        <property name="age" value="32"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+
+        <property name="pros">
+            <props>
+                <prop key="admin">admin@yiibai.com</prop>
+                <prop key="support">support@yiibai.com</prop>
+            </props>
+        </property>
+
+        <!--
+        <property name="lists2">
+            <bean class="org.springframework.beans.factory.config.ListFactoryBean">
+                <property name="targetListClass">
+                    <value>java.util.ArrayList</value>
+                </property>
+                <property name="sourceList">
+                    <list>
+                        <value>one</value>
+                        <value>2</value>
+                        <value>three</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        -->
+        <property name="lists2">
+            <util:list list-class="java.util.ArrayList">
+                <value>one</value>
+                <value>2</value>
+                <value>three</value>
+            </util:list>
+        </property>
+
+        <!--
+        <property name="sets2">
+            <bean class="org.springframework.beans.factory.config.SetFactoryBean">
+                <property name="targetSetClass">
+                    <value>java.util.HashSet</value>
+                </property>
+                <property name="sourceSet">
+                    <list>
+                        <value>one</value>
+                        <value>2</value>
+                        <value>three</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        -->
+        <property name="sets2">
+            <bean class="org.springframework.beans.factory.config.SetFactoryBean">
+                <util:set set-class="java.util.Set">
+                    <value>one</value>
+                    <value>2</value>
+                    <value>three</value>
+                </util:set>
+            </bean>
+        </property>
+
+    </bean>
+
+    <bean id="PersonBean" class="com.sujiawei.java.bean.Person">
+        <property name="name" value="yiibai1" />
+        <property name="address" value="Hainan Haikou 1" />
+        <property name="age" value="28" />
+    </bean>
+</beans>

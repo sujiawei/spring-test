@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config />
+
+    <bean id="PersonBean" class="com.sujiawei.java.bean.Person" >
+        <property name="address" value="addressA" />
+        <property name="age" value="12" />
+        <property name="name" value="sjw" />
+    </bean>
+
+    <bean id="AbilityBean" class="com.sujiawei.java.bean.Ability" >
+        <property name="skill" value="cookie" />
+    </bean>
+
+    <bean id="AbilityBean1" class="com.sujiawei.java.bean.Ability" >
+        <property name="skill" value="compute" />
+    </bean>
+
+</beans>

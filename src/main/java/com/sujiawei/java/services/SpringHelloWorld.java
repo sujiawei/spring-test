@@ -8,4 +8,9 @@ public class SpringHelloWorld implements HelloWorld {
     public void sayHello()  {
         System.out.println("Spring say Hello!");
     }
+
+    @Override
+    public void sayHello(String msg) {
+
+    }
 }
