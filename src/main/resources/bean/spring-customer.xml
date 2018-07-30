@@ -7,6 +7,7 @@ http://www.springframework.org/schema/util
 	http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 
     <bean id="CustomerBean" class="com.sujiawei.java.bean.Customer">
+        <!--
         <property name="person">
             <bean class="com.sujiawei.java.bean.Person">
                 <property name="name" value="sjw"/>
@@ -14,6 +15,9 @@ http://www.springframework.org/schema/util
                 <property name="address" value="adbs"/>
             </bean>
         </property>
+        -->
+        <property name="person" ref="PersonBean"/>
+        <property name="name" value="sjw"/>
         <property name="lists">
             <list>
                 <value>1</value>
@@ -99,6 +103,7 @@ http://www.springframework.org/schema/util
             </bean>
         </property>
         -->
+        <!--
         <property name="sets2">
             <bean class="org.springframework.beans.factory.config.SetFactoryBean">
                 <util:set set-class="java.util.Set">
@@ -108,6 +113,9 @@ http://www.springframework.org/schema/util
                 </util:set>
             </bean>
         </property>
+        -->
+
+        <property name="age" value="1"/>
 
     </bean>
 

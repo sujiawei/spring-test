@@ -8,7 +8,7 @@ public class AbilityDemo {
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean/spring-ability.xml");
-        Ability ability = (Ability) applicationContext.getBean("AbilityBean");
+        Ability ability = (Ability) applicationContext.getBean("abilityBean");
         System.out.println(ability.toString());
     }
 }

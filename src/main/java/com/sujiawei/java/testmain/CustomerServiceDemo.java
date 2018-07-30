@@ -18,5 +18,7 @@ public class CustomerServiceDemo {
         //retrieve it again
         CustomerService custB = (CustomerService)context.getBean("customerService");
         System.out.println("Message : " + custB.getMessage());
+
+        ((ClassPathXmlApplicationContext) context).close();
     }
 }

@@ -3,8 +3,16 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean name="AbilityBean" class="com.sujiawei.java.bean.Ability">
-        <property name="date" value="2018-07-25"/>
+    <bean id="dateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg value="yyyy-MM-dd" />
+    </bean>
+
+    <bean name="abilityBean" class="com.sujiawei.java.bean.Ability">
+        <property name="date">
+            <bean factory-bean="dateFormat" factory-method="parse">
+                <constructor-arg value="2017-07-26" />
+            </bean>
+        </property>
     </bean>
 
 </beans>

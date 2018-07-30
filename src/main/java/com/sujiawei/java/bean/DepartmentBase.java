@@ -1,20 +1,16 @@
 package com.sujiawei.java.bean;
 
-import com.alibaba.fastjson.JSON;
-
-import java.io.Serializable;
-
-public class Department implements Serializable {
+public class DepartmentBase {
 
    private Long deptId;
    private String deptNo;
    private String deptName;
 
-   public Department() {
+   public DepartmentBase() {
 
    }
 
-   public Department(Long deptId, String deptNo, String deptName) {
+   public DepartmentBase(Long deptId, String deptNo, String deptName) {
        this.deptId = deptId;
        this.deptNo = deptNo;
        this.deptName = deptName;
@@ -42,9 +38,5 @@ public class Department implements Serializable {
 
    public void setDeptName(String deptName) {
        this.deptName = deptName;
-   }
-
-   public String toString() {
-       return JSON.toJSONString(this);
    }
 }

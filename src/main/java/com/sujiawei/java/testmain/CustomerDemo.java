@@ -50,6 +50,6 @@ public class CustomerDemo
 
 
         String sql = "UPDATE CUSTOMER SET NAME ='BATCHUPDATE'";
-        customerDAO.insertBatchSQL(sql);
+        //customerDAO.insertBatchSQL(sql);
     }
 }

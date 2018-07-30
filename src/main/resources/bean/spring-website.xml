@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--
+    <bean id="website" class="com.sujiawei.java.bean.Website">
+        <property name="name" value="sujiawei"/>
+        <property name="url" value="http://www.sujiawei.com"/>
+    </bean>
+    -->
+    <context:component-scan base-package="com.sujiawei.java"/>
+
+    <bean id="hijackBeforeMethodBean" class="com.sujiawei.java.aop.HijackBeforeMethod"/>
+    <bean id="hijackAfterMethodBean" class="com.sujiawei.java.aop.HijackAfterMethod"/>
+    <bean id="hijackThrowExceptionBean" class="com.sujiawei.java.aop.HijackThrowException"/>
+    <bean id="hijackAroundMethodBean" class="com.sujiawei.java.aop.HijackAroundMethod"/>
+
+    <bean id="websiteServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="website"/>
+        <property name="interceptorNames">
+            <list>
+                <value>websiteAdvisor</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="websiteCut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedName" value="printName"/>
+    </bean>
+
+    <!-- 切入点 - 名称匹配
+    <bean id="websiteAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="websiteCut"/>
+        <property name="advice" ref="hijackAroundMethodBean"/>
+    </bean>
+    -->
+    <!-- 切入点 - 正则匹配 -->
+    <bean id="websiteAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="patterns">
+            <list>
+                <value>.*Url.*</value>
+            </list>
+        </property>
+        <property name="advice" ref="hijackAroundMethodBean"/>
+    </bean>
+
+    <!--
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames">
+            <list>
+                <value>*site</value>
+            </list>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>websiteAdvisor</value>
+            </list>
+        </property>
+    </bean>
+    -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+</beans>

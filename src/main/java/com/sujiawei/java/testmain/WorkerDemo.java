@@ -10,8 +10,9 @@ public class WorkerDemo {
 
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean/spring-worker.xml");
 
-        Worker worker = (Worker) applicationContext.getBean("worker");
+        Worker worker = (Worker) applicationContext.getBean("workerBean");
 
-        worker.getPerson().say();
+        System.out.println(worker.toString());
+        //worker.getPerson().say();
     }
 }

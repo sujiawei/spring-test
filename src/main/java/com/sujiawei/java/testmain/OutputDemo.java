@@ -10,5 +10,6 @@ public class OutputDemo {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean/spring-output.xml");
         OutputHelper outputHelper = (OutputHelper) applicationContext.getBean("OutputHelper");
         outputHelper.generateOutput();
+        outputHelper.getCustomerBo().printMsg("sjw");
     }
 }

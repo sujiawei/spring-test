@@ -8,4 +8,5 @@
     <bean id="helloWorldService" class="com.sujiawei.java.services.HelloWorldService">
         <property name="helloWorld" ref="strutsHelloWorld"/>
     </bean>
+
 </beans>
