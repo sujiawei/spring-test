@@ -101,7 +101,7 @@ public class AbstractApplicationContext implements ApplicationContext {
             setterInject(result, e);
         }
 
-        return null;
+        return result;
     }
 
     private Object instance(Element e) {
@@ -158,7 +158,7 @@ public class AbstractApplicationContext implements ApplicationContext {
         Map<String, Object> result = new HashMap<>();
 
         for (PropertyElement p : properties) {
-            DataElement de = p.getDataElement();
+            DataElement de = p.getValue();
             if (de instanceof RefElement) {
                 result.put(p.getName(), getBean(de.getValue().toString()));
             } else if (de instanceof ValueElement) {

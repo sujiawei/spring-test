@@ -7,10 +7,19 @@
         <property name="deptName" value="sjwBase"/>
     </bean>
 
-    <bean id="departmentBean" parent="departmentBaseBean" class="com.sujiawei.java.bean.Department" >
+    <bean id="person" class="com.sujiawei.java.bean.Person">
+        <property name="address" value="addressA" />
+        <property name="age" value="12" />
+        <property name="name" value="sjw" />
+    </bean>
+
+    <bean id="departmentBean" parent="departmentBaseBean" class="com.sujiawei.java.bean.Department">
+        <!--<property name="person" ref="personBean"/>-->
         <property name="deptId" value="222"/>
         <property name="deptName" value="sjw"/>
         <property name="deptNo" value="333"/>
     </bean>
+
+    <bean id="customerBean" class="com.sujiawei.java.bean.Customer" autowire="byName"/>
 
 </beans>

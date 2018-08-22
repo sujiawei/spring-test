@@ -6,9 +6,15 @@ public class PropertyElement {
 
     private String name;
 
-    private String value;
+    private DataElement value;
 
-    private DataElement dataElement;
+    public DataElement getValue() {
+        return value;
+    }
+
+    public void setValue(DataElement value) {
+        this.value = value;
+    }
 
     public String getName() {
         return name;
@@ -17,26 +23,9 @@ public class PropertyElement {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public DataElement getDataElement() {
-        return dataElement;
-    }
-
-    public void setDataElement(DataElement dataElement) {
-        this.dataElement = dataElement;
-    }
-
     public PropertyElement(String value, DataElement dataElement) {
-        this.value = value;
-        this.dataElement = dataElement;
+        this.name = value;
+        this.value = dataElement;
     }
 
 }

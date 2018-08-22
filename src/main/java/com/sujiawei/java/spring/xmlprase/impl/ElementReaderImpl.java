@@ -4,6 +4,7 @@ import com.sujiawei.java.spring.xmlprase.AutoWire;
 import com.sujiawei.java.spring.xmlprase.DataElement;
 import com.sujiawei.java.spring.xmlprase.ElementReader;
 import org.dom4j.Element;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,12 +68,13 @@ public class ElementReaderImpl implements ElementReader {
     @Override
     public AutoWire getAutoWire(Element element) {
 
-        String value = getAttribute(element, "autoWire");
+        String value = getAttribute(element, "autowire");
 
         String parentValue = getAttribute(element.getParent(), "default-autowire");
+        parentValue = (parentValue == null) ? "no" : parentValue;
 
         if ("no".equals(parentValue)) {
-            if ("byName".equals(parentValue)) {
+            if ("byName".equals(value)) {
                 return new ByNameAutoWire(value);
             } else {
                 return new NoAutoWire(value);
@@ -109,9 +111,9 @@ public class ElementReaderImpl implements ElementReader {
         List<PropertyElement> result = new ArrayList<>();
 
         for (Element e : properties) {
-            List<Element> els = e.elements();
+            //List<Element> els = e.elements();
 
-            DataElement dataElement = getDataElement(els.get(0));
+            DataElement dataElement = getDataElement(e);
 
             String value = getAttribute(e, "name");
 
@@ -123,14 +125,14 @@ public class ElementReaderImpl implements ElementReader {
 
     private DataElement getDataElement(Element element) {
 
-        String name = element.getName();
+        String value = getAttribute(element, "value");
+        String ref = getAttribute(element, "ref");
 
-        if ("value".equals(name)) {
-            String classTypeName = element.attributeValue("type");
-            String data = element.getText();
+        if (!StringUtils.isEmpty(value)) {
+            String classTypeName = element.attributeValue("type") == null ? "String" : element.attributeValue("type");
 
-            return new ValueElement(getValue(classTypeName, data));
-        } else if ("ref".equals(name)) {
+            return new ValueElement(getValue(classTypeName, value));
+        } else if (!StringUtils.isEmpty(ref)) {
             return new RefElement(getAttribute(element, "bean"));
         }
         return null;

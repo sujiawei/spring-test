@@ -10,6 +10,16 @@ public class Department implements Serializable {
    private String deptNo;
    private String deptName;
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    private Person person;
+
    public Department() {
 
    }
