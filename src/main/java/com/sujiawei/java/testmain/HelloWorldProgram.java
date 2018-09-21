@@ -22,7 +22,7 @@ public class HelloWorldProgram {
 
         BeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
 
-        HelloWorldService service1 = (HelloWorldService) context.getBean("helloWorldService");
+        HelloWorldService service1 = (HelloWorldService) beanFactory.getBean("helloWorldService");
 
         HelloWorld hw1 = service1.getHelloWorld();
 
