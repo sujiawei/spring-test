@@ -3,8 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <import resource="database/spring-database-mysql.xml" />
-    <import resource="dao/spring-customer.xml" />
-    <import resource="dao/spring-user.xml"/>
+    <bean id="userDAO" class="com.sujiawei.java.daoimpl.UserImplDAO">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
 
 </beans>

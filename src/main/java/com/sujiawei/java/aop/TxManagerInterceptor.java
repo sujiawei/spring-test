@@ -4,9 +4,9 @@ import com.sujiawei.java.annotation.TxManagerAnnotation;
 import com.sujiawei.java.utils.TxManagerUtil;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class TxManagerInterceptor implements MethodInterceptor {
 
     @Override

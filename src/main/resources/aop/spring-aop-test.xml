@@ -9,7 +9,6 @@
 
     <context:component-scan base-package="com.sujiawei.java" />
 
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
     <bean id="txManagerInterceptor" class="com.sujiawei.java.aop.TxManagerInterceptor"/>
 

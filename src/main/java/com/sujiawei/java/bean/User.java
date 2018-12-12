@@ -9,6 +9,16 @@ public class User {
 
     public String name;
 
+    public Integer getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Integer birthday) {
+        this.birthday = birthday;
+    }
+
+    public Integer birthday;
+
     public Integer getId() {
         return id;
     }
